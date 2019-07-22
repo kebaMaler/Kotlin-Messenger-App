@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity" android:background="@color/colorBackground">
+        tools:context=".MainActivity" android:background="@android:color/holo_green_light">
     <EditText
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -13,10 +13,10 @@
             android:ems="10"
             android:paddingLeft="10dp"
             android:id="@+id/username_editText_register"
-            android:background="@android:color/background_light" android:layout_marginEnd="16dp"
+            android:background="@drawable/roundef_edittext_register_login" android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="24dp"
-            app:layout_constraintTop_toTopOf="parent" android:hint="Username"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"
+            android:hint="Username" app:layout_constraintTop_toBottomOf="@+id/profile_picture_button_register"/>
     <EditText
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -24,7 +24,7 @@
             android:ems="10"
             android:paddingLeft="10dp"
             android:id="@+id/email_editText_register"
-            android:background="@android:color/background_light"
+            android:background="@drawable/roundef_edittext_register_login"
             app:layout_constraintEnd_toEndOf="@+id/username_editText_register"
             app:layout_constraintStart_toStartOf="@+id/username_editText_register" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/username_editText_register" android:hint="Email"/>
@@ -35,7 +35,7 @@
             android:ems="10"
             android:paddingLeft="10dp"
             android:id="@+id/password_editText_register"
-            android:background="@android:color/background_light"
+            android:background="@drawable/roundef_edittext_register_login"
             app:layout_constraintEnd_toEndOf="@+id/email_editText_register"
             app:layout_constraintStart_toStartOf="@+id/email_editText_register" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/email_editText_register" android:hint="Password"/>
@@ -43,10 +43,12 @@
             android:text="REGISTER"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:id="@+id/register_button_register" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/password_editText_register"
             app:layout_constraintEnd_toEndOf="@+id/password_editText_register"
-            app:layout_constraintStart_toStartOf="@+id/password_editText_register"/>
+            app:layout_constraintStart_toStartOf="@+id/password_editText_register"
+            android:background="@drawable/rouded_button"/>
     <TextView
             android:text="Already have an account?"
             android:layout_width="wrap_content"
@@ -58,4 +60,13 @@
             app:layout_constraintTop_toBottomOf="@+id/register_button_register"
             app:layout_constraintEnd_toEndOf="@+id/register_button_register"
             app:layout_constraintStart_toStartOf="@+id/register_button_register"/>
+    <Button
+            android:text="Profile picture"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/rounded_profile_button_login"
+            android:id="@+id/profile_picture_button_register" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
