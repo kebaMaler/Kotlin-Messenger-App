@@ -32,6 +32,9 @@ class LatestMessagesActivity : AppCompatActivity() {
         when(item?.itemId){
             R.id.menu_new_massage ->{
 
+                val intent = Intent(this, NewMessageActivity:: class.java)
+                startActivity(intent)
+
             }
             R.id.menu_sing_out -> {
                 FirebaseAuth.getInstance().signOut()
