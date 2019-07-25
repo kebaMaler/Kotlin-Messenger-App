@@ -1,5 +1,6 @@
 package sola.martin.kotlinmessenger
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
@@ -34,6 +35,9 @@ class LoginActivity: AppCompatActivity(){
                     }
 
                     Log.d(TAG, "Authorisation compleate: with: ${it.result?.user?.uid}")
+                    val intent = Intent(this, LatestMessagesActivity:: class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
                 }
                 .addOnFailureListener {
                     Log.d(TAG, "Login failure: ${it.message}")
