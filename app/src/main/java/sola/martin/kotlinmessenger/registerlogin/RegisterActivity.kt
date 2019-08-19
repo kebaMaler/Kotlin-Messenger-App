@@ -1,4 +1,4 @@
-package sola.martin.kotlinmessenger
+package sola.martin.kotlinmessenger.registerlogin
 
 import android.app.Activity
 import android.content.Intent
@@ -12,6 +12,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_register.*
+import sola.martin.kotlinmessenger.R
+import sola.martin.kotlinmessenger.messages.LatestMessagesActivity
+import sola.martin.kotlinmessenger.models.User
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -67,7 +70,7 @@ class RegisterActivity : AppCompatActivity() {
         val email = email_editText_register.text.toString()
         val password = password_editText_register.text.toString()
 
-        if (email.isEmpty() || password.isEmpty() || selectedPhotoUri == null ) {
+        if (email.isEmpty() || password.isEmpty() || selectedPhotoUri == null) {
             Toast.makeText(this, "Please enter text in email/pw/chose photo", Toast.LENGTH_LONG).show()
             return
         }
@@ -87,10 +90,9 @@ class RegisterActivity : AppCompatActivity() {
                 //else if successful
                 Log.d(TAG, "Successfully created user with uid: ${it.result?.user?.uid}")
 
+                uploadImageToFirebaseStorage()
 
-                    uploadImageToFirebaseStorage()
-
-                val intent = Intent(this, LatestMessagesActivity:: class.java)
+                val intent = Intent(this, LatestMessagesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
 
@@ -125,11 +127,15 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun saveUserToFirebaseDatabase(profileImageUrl: String){
+    private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
-        val user = User(uid, username_editText_register.text.toString(), profileImageUrl )
+        val user = User(
+            uid,
+            username_editText_register.text.toString(),
+            profileImageUrl
+        )
 
         ref.setValue(user)
             .addOnSuccessListener {
@@ -142,6 +148,4 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
-class User(val  uid: String, val username: String, val profileImageUrl: String ){
-    constructor() : this("","","")   /// ovo nekužim to je neka kotlin sintaksa
-}
+

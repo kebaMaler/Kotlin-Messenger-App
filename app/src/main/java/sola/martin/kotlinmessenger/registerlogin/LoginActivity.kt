@@ -1,4 +1,4 @@
-package sola.martin.kotlinmessenger
+package sola.martin.kotlinmessenger.registerlogin
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import sola.martin.kotlinmessenger.R
+import sola.martin.kotlinmessenger.messages.LatestMessagesActivity
 
 val  TAG = "LoginActivity"
 class LoginActivity: AppCompatActivity(){

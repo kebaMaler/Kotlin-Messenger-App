@@ -1,5 +1,6 @@
-package sola.martin.kotlinmessenger
+package sola.martin.kotlinmessenger.messages
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,9 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
+import sola.martin.kotlinmessenger.R
+import sola.martin.kotlinmessenger.models.User
+
 
 class NewMessageActivity : AppCompatActivity() {
     val  TAG = "NewMesssageActivity"
@@ -39,7 +43,14 @@ class NewMessageActivity : AppCompatActivity() {
                     if (user != null){
                         adapter.add(UserItem(user))
                     }
+                }
 
+                adapter.setOnItemClickListener { item, view ->
+
+                    val intent = Intent(view.context, ChatLogActivity::class.java )
+                    startActivity(intent)
+
+                    finish()
                 }
 
                 recyclerView_newMessage.adapter = adapter
@@ -48,10 +59,8 @@ class NewMessageActivity : AppCompatActivity() {
             override fun onCancelled(p0: DatabaseError) {
 
             }
-
         })
     }
-
 
     class UserItem(val user: User): Item<ViewHolder>(){
 
