@@ -67,8 +67,8 @@ class RegisterActivity : AppCompatActivity() {
         val email = email_editText_register.text.toString()
         val password = password_editText_register.text.toString()
 
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please enter text in email/pw", Toast.LENGTH_LONG).show()
+        if (email.isEmpty() || password.isEmpty() || selectedPhotoUri == null ) {
+            Toast.makeText(this, "Please enter text in email/pw/chose photo", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -86,7 +86,15 @@ class RegisterActivity : AppCompatActivity() {
 
                 //else if successful
                 Log.d(TAG, "Successfully created user with uid: ${it.result?.user?.uid}")
-                uploadImageToFirebaseStorage()
+
+
+                    uploadImageToFirebaseStorage()
+
+                val intent = Intent(this, LatestMessagesActivity:: class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+
+
             }
             .addOnFailureListener {
                 Log.d(TAG, "Failed to create user: ${it.message}")
@@ -127,10 +135,6 @@ class RegisterActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 Log.d(TAG, "Successful user class created")
 
-                val intent = Intent(this, LatestMessagesActivity:: class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-
             }
             .addOnFailureListener {
                 Log.d(TAG, "Adding user to Firebase database failed: ${it.message}")
@@ -138,4 +142,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
-class User(val  uid: String, val username: String, val profileImageUrl: String )
+class User(val  uid: String, val username: String, val profileImageUrl: String ){
+    constructor() : this("","","")   /// ovo nekužim to je neka kotlin sintaksa
+}
