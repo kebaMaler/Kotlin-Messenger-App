@@ -12,6 +12,7 @@
             android:layout_height="50dp"
             android:inputType="textPersonName"
             android:ems="10"
+            android:backgroundTint="@android:color/white"
             android:id="@+id/editText_chat_log" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/button_chat_log" android:layout_marginEnd="8dp"
@@ -30,8 +31,9 @@
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:background="@android:color/holo_green_light"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="16dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/editText_chat_log" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/recyclerview_chat_log"/>
