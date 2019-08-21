@@ -19,7 +19,7 @@ import sola.martin.kotlinmessenger.models.User
 
 
 class NewMessageActivity : AppCompatActivity() {
-    val  TAG = "NewMessageActivity"
+    val  tag = "NewMessageActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +30,10 @@ class NewMessageActivity : AppCompatActivity() {
         featchUser()
     }
 
+    companion object{
+        const val USER_KEY = "USER_KEY"
+    }
+
     private fun featchUser() {
         val ref = FirebaseDatabase.getInstance().getReference("/users")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -38,7 +42,7 @@ class NewMessageActivity : AppCompatActivity() {
                 val adapter = GroupAdapter<ViewHolder>()
 
                 p0.children.forEach {
-                    Log.d( TAG , it.toString())
+                    Log.d( tag , it.toString())
                     val user = it.getValue(User::class.java)
                     if (user != null){
                         adapter.add(UserItem(user))
@@ -46,8 +50,10 @@ class NewMessageActivity : AppCompatActivity() {
                 }
 
                 adapter.setOnItemClickListener { item, view ->
+                    val userItem = item as UserItem
 
                     val intent = Intent(view.context, ChatLogActivity::class.java )
+                    intent.putExtra(USER_KEY, userItem.user)
                     startActivity(intent)
 
                     finish()

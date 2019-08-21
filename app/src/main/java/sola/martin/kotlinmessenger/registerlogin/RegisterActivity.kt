@@ -111,7 +111,7 @@ class RegisterActivity : AppCompatActivity() {
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
 
-        ref.putFile(selectedPhotoUri!!).addOnSuccessListener {
+        ref.putFile(selectedPhotoUri!!).addOnSuccessListener { it ->
             Log.d(TAG, "Successfully uploaded image: ${it.metadata?.path} ")
 
             ref.downloadUrl.addOnSuccessListener {

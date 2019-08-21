@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import sola.martin.kotlinmessenger.R
 import sola.martin.kotlinmessenger.messages.LatestMessagesActivity
 
-val  TAG = "LoginActivity"
+const val tag = "LoginActivity"
 class LoginActivity: AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,22 +27,22 @@ class LoginActivity: AppCompatActivity(){
                 return@setOnClickListener
             }
 
-            Log.d(TAG, "Attempt login with email/pw: $email/***")
+            Log.d(tag, "Attempt login with email/pw: $email/***")
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
                     if (!it.isSuccessful){
-                        Log.d(TAG,  "Login:failure", it.exception)
+                        Log.d(tag,  "Login:failure", it.exception)
                         return@addOnCompleteListener
                     }
 
-                    Log.d(TAG, "Authorisation compleate: with: ${it.result?.user?.uid}")
+                    Log.d(tag, "Authorisation compleate: with: ${it.result?.user?.uid}")
                     val intent = Intent(this, LatestMessagesActivity:: class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                 }
                 .addOnFailureListener {
-                    Log.d(TAG, "Login failure: ${it.message}")
+                    Log.d(tag, "Login failure: ${it.message}")
                 }
 
         }

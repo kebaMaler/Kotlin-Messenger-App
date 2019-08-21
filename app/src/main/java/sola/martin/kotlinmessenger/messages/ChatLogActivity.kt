@@ -7,6 +7,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import sola.martin.kotlinmessenger.R
+import sola.martin.kotlinmessenger.models.User
 
 class ChatLogActivity : AppCompatActivity() {
 
@@ -15,6 +16,9 @@ class ChatLogActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat_log)
 
         supportActionBar?.title = "Chat Log"
+
+        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
+        supportActionBar?.title = user.username
 
         val adapter = GroupAdapter<ViewHolder>()
 
