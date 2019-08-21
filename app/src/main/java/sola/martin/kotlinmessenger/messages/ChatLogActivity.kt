@@ -23,7 +23,11 @@ class ChatLogActivity : AppCompatActivity() {
         adapter.add(ChatFromItem())
         adapter.add(ChatToItem())
         adapter.add(ChatFromItem())
-
+        adapter.add(ChatFromItem())
+        adapter.add(ChatToItem())
+        adapter.add(ChatFromItem())
+        adapter.add(ChatToItem())
+        adapter.add(ChatFromItem())
 
 
         recyclerview_chat_log.adapter = adapter

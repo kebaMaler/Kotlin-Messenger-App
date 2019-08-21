@@ -19,7 +19,7 @@ import sola.martin.kotlinmessenger.models.User
 
 
 class NewMessageActivity : AppCompatActivity() {
-    val  TAG = "NewMesssageActivity"
+    val  TAG = "NewMessageActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
