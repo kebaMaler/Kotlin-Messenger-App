@@ -63,7 +63,6 @@ class RegisterActivity : AppCompatActivity() {
             selectphoto_button_register.alpha = 0f
 
         }
-
     }
 
     private fun performRegister() {
@@ -96,7 +95,6 @@ class RegisterActivity : AppCompatActivity() {
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
 
-
             }
             .addOnFailureListener {
                 Log.d(TAG, "Failed to create user: ${it.message}")
@@ -124,7 +122,6 @@ class RegisterActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Log.d(TAG, "Uploading image failed: ${it.message}")
             }
-
     }
 
     private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
