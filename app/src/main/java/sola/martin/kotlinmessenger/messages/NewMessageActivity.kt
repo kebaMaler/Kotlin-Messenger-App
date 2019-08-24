@@ -27,14 +27,14 @@ class NewMessageActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Select user"
 
-        featchUser()
+        fetchUser()
     }
 
     companion object{
         const val USER_KEY = "USER_KEY"
     }
 
-    private fun featchUser() {
+    private fun fetchUser() {
         val ref = FirebaseDatabase.getInstance().getReference("/users")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
 

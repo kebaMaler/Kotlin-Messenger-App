@@ -136,6 +136,7 @@ class RegisterActivity : AppCompatActivity() {
 
         ref.setValue(user)
             .addOnSuccessListener {
+
                 Log.d(TAG, "Successful user class created")
 
             }
