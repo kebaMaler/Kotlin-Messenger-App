@@ -34,8 +34,9 @@ companion object{
 
         recyclerview_chat_log.adapter = adapter
 
-        supportActionBar?.title = toUser?.username
+
         toUser = intent.getParcelableExtra(NewMessageActivity.USER_KEY)
+
         supportActionBar?.title = toUser?.username
 
         listenForMessages()
@@ -70,13 +71,15 @@ companion object{
                 if (chatMessage != null){
                     Log.d(TAG, chatMessage.text)
 
-                    if (chatMessage.fomId == FirebaseAuth.getInstance().uid){
+                    if (chatMessage.fromId == FirebaseAuth.getInstance().uid){
                         val currentUser = LatestMessagesActivity.currentUser ?: return
                         adapter.add(ChatFromItem(chatMessage.text, currentUser))
                     } else{
                         adapter.add(ChatToItem(chatMessage.text, toUser!!))
                     }
                 }
+
+                recyclerview_chat_log.scrollToPosition(adapter.itemCount -1)
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {
@@ -107,6 +110,12 @@ companion object{
                 Log.d(TAG, "Saved our message: ${reference.key}")
             }
         toReference.setValue(chatMessage)
+
+        val latestMessageRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId/$toId")
+        latestMessageRef.setValue(chatMessage)
+
+        val latestMessageToRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$toId/$fromId")
+        latestMessageToRef.setValue(chatMessage)
     }
 }
 
